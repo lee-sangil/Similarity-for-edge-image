@@ -19,11 +19,8 @@ sumCost = 0;
 for r = 1:M
 	for c = 1:N
 		if estImage(r,c) > 0
-			[cost, matched] = costOfClosest(refImage, estImage, [r,c], E, D, Z);
-			
-			if matched
-				sumCost = sumCost + cost;
-			end
+			cost = costOfClosest(refImage, estImage, [r,c], E, D, Z);
+			sumCost = sumCost + cost;
 		end
 	end
 end

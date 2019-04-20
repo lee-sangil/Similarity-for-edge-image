@@ -1,14 +1,11 @@
-function [cost, matched] = costOfClosest(refImage, estImage, rc, E, D, Z)
+function cost = costOfClosest(refImage, estImage, rc, E, D, Z)
 
 d_max = D(1,1);
 
 [subReferenceImage, valid] = advancedRange(refImage, rc, d_max);
 
-if any(any(subReferenceImage))
-	matched = true;
-else
+if ~any(any(subReferenceImage))
 	cost = 1;
-	matched = false;
 	return;
 end
 
