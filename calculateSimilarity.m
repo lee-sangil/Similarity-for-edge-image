@@ -4,7 +4,7 @@ numOfPixels = sum(sum(refImage | estImage));
 
 unmatchedRefImage = refImage > 0;
 unmatchedRefImage(RefMatched) = 0;
-unmatchedEstImage = refImage > 0;
+unmatchedEstImage = estImage > 0;
 unmatchedEstImage(EstMatched) = 0;
 
 unmatchedNumOfPixels = sum(sum(unmatchedRefImage | unmatchedEstImage));
