@@ -19,6 +19,10 @@ Param.E = E;
 Param.D = D;
 Param.Z = Z;
 
+RefCost = zeros([M,N]);
+RefMatched = false([M,N]);
+RefPair = cell([M,N]);
+
 EstCost = zeros([M,N]);
 EstMatched = false([M,N]);
 EstPair = cell([M,N]);
@@ -27,4 +31,6 @@ EstPair = cell([M,N]);
 [EstCost, EstMatched, EstPair] = findClosestMatching(estImage, refImage, RefCost, RefMatched, RefPair, Param);
 [RefCost, RefMatched, RefPair] = findClosestMatching(refImage, estImage, EstCost, EstMatched, EstPair, Param);
 
-similarity = calculateSimilarity(refImage, estImage, RefCost, RefMatched, EstMatched);
+calculateSimilarity(RefCost, RefMatched)
+% numOfPixels = sum(sum(refImage | estImage));
+similarity = 100;% * (1 - sumCost/numOfPixels);
