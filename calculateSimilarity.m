@@ -1,15 +1,14 @@
 function similarity = calculateSimilarity(refImage, estImage, RefCost, RefMatched, EstMatched)
 
-numOfPixels = sum(sum(refImage | estImage));
-
 unmatchedRefImage = refImage > 0;
 unmatchedRefImage(RefMatched) = 0;
 unmatchedEstImage = estImage > 0;
 unmatchedEstImage(EstMatched) = 0;
 
+matchedNumOfPixels = sum(sum(RefMatched));
 unmatchedNumOfPixels = sum(sum(unmatchedRefImage | unmatchedEstImage));
 
 matchedCost = sum(sum(RefCost.*RefMatched));
-unmatchedCost = sum(sum(unmatchedNumOfPixels));
+unmatchedCost = unmatchedNumOfPixels;
 
-similarity = 100 * (1 - (matchedCost+unmatchedCost)/numOfPixels);
+similarity = 100 * (1 - (matchedCost+unmatchedCost)/(unmatchedNumOfPixels+matchedNumOfPixels));
